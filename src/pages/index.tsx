@@ -375,6 +375,7 @@ export default function HomePage() {
                     variant="compact"
                     className="sm:shrink-0 sm:self-center"
                     onResolved={(snapshot) => setSelectedLocation(discoveryLabelFromSnapshot(snapshot))}
+                    onLocationCleared={() => setSelectedLocation(null)}
                   />
                   <motion.button
                     whileTap={{ scale: 0.96 }}

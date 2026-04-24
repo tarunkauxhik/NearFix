@@ -313,6 +313,7 @@ export default function ServicesPage() {
               variant="compact"
               className="shrink-0"
               onResolved={(snapshot) => setSelectedLocation(discoveryLabelFromSnapshot(snapshot))}
+              onLocationCleared={() => setSelectedLocation(null)}
             />
             <Filter className="w-3.5 h-3.5" style={{ color: 'rgba(255,255,255,0.35)' }} />
             <select

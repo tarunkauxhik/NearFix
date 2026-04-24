@@ -89,3 +89,6 @@ public/assets
 
 # Import temporary files
 .import-*
+
+# Local Docker overrides (often contain secrets)
+docker-compose.override.yml

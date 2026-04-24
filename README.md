@@ -115,6 +115,8 @@ For versioned SQL migrations: `npx drizzle-kit generate` ([Drizzle Kit](https://
 2. Run **`npm ci`** (or **`npm install`**) then **`npm run build`**.  
 3. Start with **`npm start`** (see `env.example` for `PORT` / `SERVER_*`).  
 
+**Full step-by-step (Render, Clerk, Drizzle, Docker):** see [DEPLOY.md](DEPLOY.md).
+
 Host docs: [Render](https://render.com/docs) · [Railway](https://docs.railway.app).
 
 ---

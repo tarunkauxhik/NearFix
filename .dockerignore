@@ -1,0 +1,32 @@
+# Dependencies and build output
+node_modules
+dist
+dist-ssr
+.api
+.vite
+.cache
+
+# Git and env (never bake secrets into image context)
+.git
+.gitignore
+.env
+.env.*
+
+# Tests and docs (not needed to build)
+coverage
+**/*.test.ts
+**/*.test.tsx
+**/*.spec.ts
+**/*.spec.tsx
+
+# IDE and OS
+.cursor
+.idea
+.vscode
+*.log
+Thumbs.db
+.DS_Store
+
+# Plans and local-only compose overrides (secrets)
+.cursor/plans
+docker-compose.override.yml

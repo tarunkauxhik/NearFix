@@ -101,14 +101,16 @@ Set exactly:
 
 | Field | Value |
 | --- | --- |
-| **Build Command** | `npm ci && npm run build` |
+| **Build Command** | `npm ci --include=dev && npm run build` |
 | **Start Command** | `npm start` |
 
 Why:
 
-- **`npm ci`** uses [`package-lock.json`](package-lock.json) for reproducible installs (same as CI).
+- **`npm ci --include=dev`** uses [`package-lock.json`](package-lock.json) for reproducible installs and **always installs devDependencies** (Vite, `@vitejs/plugin-react`, TypeScript, Tailwind, etc.). If you set **`NODE_ENV=production`** on the service (section 5), plain **`npm ci`** omits devDependencies and **`vite build` fails** with `Cannot find package '@vitejs/plugin-react'`.
 - **`npm run build`** produces `dist/client/` and `dist/server.bundle.mjs` (Vite + server bundle).
 - **`npm start`** runs [`scripts/run-prod.mjs`](scripts/run-prod.mjs), which sets `SERVER_PORT` from Render’s **`PORT`** and `SERVER_HOST` to `0.0.0.0` so the service accepts traffic ([Render port binding](https://docs.render.com/docs/web-services)).
+
+If the service was created earlier with `npm ci && npm run build`, open **Settings** on Render, replace the **Build Command** with the table value above, and trigger a **Manual Deploy**.
 
 **Advanced (recommended):**
 
@@ -206,6 +208,7 @@ Apply the Drizzle schema to the **same** database your app will use:
 | Symptom | What to check |
 | --- | --- |
 | Build fails on `npm ci` | [`package-lock.json`](package-lock.json) committed; no conflicting `pnpm-lock.yaml` committed (this repo [`.gitignore`](.gitignore) ignores `pnpm-lock.yaml` while using npm). |
+| `vite build` / `ERR_MODULE_NOT_FOUND` for `@vitejs/plugin-react` (or other dev-only packages) | **`NODE_ENV=production`** on the service makes plain `npm ci` skip devDependencies. Use the documented build command **`npm ci --include=dev && npm run build`** (section 4), then redeploy. |
 | Build fails on `vite build` | Build logs for TypeScript / missing `VITE_CLERK_PUBLISHABLE_KEY` at build time. |
 | Service crashes on start | **Logs** tab: missing `DATABASE_URL` or `CLERK_SECRET_KEY`; database unreachable from Render region. |
 | 502 / timeout | Cold start on free tier; retry. Check memory / crash loops in logs. |

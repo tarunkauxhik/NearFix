@@ -116,6 +116,11 @@ Why:
 
 Save settings; you will add environment variables before or right after the first deploy (section 5).
 
+### Native Node vs Docker on Render
+
+- **Native Node (recommended):** Use Render’s **Node** runtime with the build/start commands in this section. Define `VITE_*` and server secrets in Render **Environment**; no Docker build args. This is the path the rest of this guide assumes.
+- **Docker on Render (optional):** Point a **Docker** web service at the repo [`Dockerfile`](Dockerfile). You must supply the same **build arguments** as the Dockerfile (`VITE_CLERK_PUBLISHABLE_KEY`, optional `VITE_PUBLIC_URL`, …) in Render or a blueprint, **and** runtime variables (`CLERK_SECRET_KEY`, `DATABASE_URL`, …). Easier to misconfigure than native Node for this project.
+
 ---
 
 ## 5. Render: environment variables

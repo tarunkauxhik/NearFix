@@ -11,7 +11,7 @@ A public **portfolio project**: a demo-style **hyperlocal services marketplace**
 
 ## Live demo
 
-_Add your production URL here after deploy (e.g. `https://your-app.onrender.com`)._
+**Live demo:** [nearfix-fezq.onrender.com](https://nearfix-fezq.onrender.com)
 
 ---
 
